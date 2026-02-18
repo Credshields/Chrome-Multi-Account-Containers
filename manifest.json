@@ -6,7 +6,11 @@
   "permissions": [
     "tabs",
     "tabGroups",
+    "cookies",
     "storage"
+  ],
+  "host_permissions": [
+    "<all_urls>"
   ],
   "background": {
     "service_worker": "background/background.js"
