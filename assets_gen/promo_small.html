@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            width: 440px;
+            height: 280px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #2b2a33 0%, #42414d 100%);
+            color: white;
+            overflow: hidden;
+            position: relative;
+        }
+
+        /* Abstract Shapes */
+        .shape {
+            position: absolute;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 50%;
+        }
+
+        .s1 {
+            width: 300px;
+            height: 300px;
+            top: -100px;
+            left: -100px;
+        }
+
+        .s2 {
+            width: 200px;
+            height: 200px;
+            bottom: -50px;
+            right: -50px;
+        }
+
+        .logo-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+            margin-bottom: 20px;
+            transform: rotate(45deg);
+        }
+
+        .square {
+            width: 40px;
+            height: 40px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        .blue {
+            background-color: #37adff;
+        }
+
+        .orange {
+            background-color: #ff9400;
+        }
+
+        .green {
+            background-color: #2cbe4e;
+        }
+
+        .pink {
+            background-color: #ff4bda;
+        }
+
+        h1 {
+            font-size: 24px;
+            font-weight: 700;
+            margin: 0;
+            text-align: center;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+            z-index: 10;
+        }
+
+        .subtitle {
+            font-size: 14px;
+            margin-top: 5px;
+            opacity: 0.8;
+            font-weight: 400;
+            z-index: 10;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="shape s1"></div>
+    <div class="shape s2"></div>
+
+    <div class="logo-container">
+        <div class="square blue"></div>
+        <div class="square green"></div>
+        <div class="square orange"></div>
+        <div class="square pink"></div>
+    </div>
+
+    <h1>Multi-Account Containers</h1>
+    <div class="subtitle">Isolate. Organize. Productivity.</div>
+</body>
+
+</html>

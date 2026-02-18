@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg width="128" height="128" viewBox="0 0 128 128" xmlns="http://www.w3.org/2000/svg">
+    <!-- Blue Container -->
+    <rect x="10" y="10" width="50" height="50" rx="12" ry="12" fill="#37adff" />
+    
+    <!-- Green Container -->
+    <rect x="68" y="10" width="50" height="50" rx="12" ry="12" fill="#2cbe4e" />
+    
+    <!-- Orange Container -->
+    <rect x="10" y="68" width="50" height="50" rx="12" ry="12" fill="#ff9400" />
+    
+    <!-- Pink Container -->
+    <rect x="68" y="68" width="50" height="50" rx="12" ry="12" fill="#ff4bda" />
+</svg>
