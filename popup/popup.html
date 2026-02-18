@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Multi-Account Containers</title>
+    <style>
+        :root {
+            /* Light Mode Defaults */
+            --bg-color: #ffffff;
+            --text-color: #333333;
+            --menu-hover: #f0f0f4;
+            --border-color: #e0e0e0;
+            --input-bg: #ffffff;
+            --input-border: #ccc;
+            --input-focus: #0060df;
+            --section-title: #333;
+            --subtext: #666;
+            --button-bg: #f9f9fa;
+            --button-hover: #e0e0e6;
+            --button-border: #ccc;
+            --tag-bg: #e0e0e6;
+            --tag-text: #333;
+            --header-bg: #f0f0f4;
+        }
+
+        @media (prefers-color-scheme: dark) {
+            :root {
+                /* Dark Mode Overrides */
+                --bg-color: #38383d;
+                --text-color: #ffffff;
+                --menu-hover: #52525e;
+                --border-color: #5f6066;
+                --input-bg: #4a4a4f;
+                --input-border: #5f6066;
+                --input-focus: #00ddff;
+                --section-title: #f0f0f4;
+                --subtext: #cfcfd8;
+                --button-bg: #4a4a4f;
+                --button-hover: #5a5a5f;
+                --button-border: #5f6066;
+                --tag-bg: #52525e;
+                --tag-text: #cfcfd8;
+                --header-bg: #42414d;
+            }
+        }
+
+        body {
+            width: 320px;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            overflow-x: hidden;
+        }
+
+        /* Views */
+        .view {
+            transition: transform 0.2s ease-in-out;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        /* Header & Menus */
+        .menu-list {
+            padding: 5px 0;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .menu-item {
+            padding: 8px 15px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            font-size: 13px;
+        }
+
+        .menu-item:hover {
+            background-color: var(--menu-hover);
+        }
+
+        .menu-icon {
+            margin-right: 10px;
+            width: 16px;
+            text-align: center;
+        }
+
+        /* Containers Section */
+        .section-title {
+            padding: 10px 15px 5px;
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--section-title);
+        }
+
+        .search-container {
+            padding: 0 15px 10px;
+        }
+
+        input[type="text"] {
+            width: 100%;
+            padding: 6px 10px;
+            border-radius: 4px;
+            border: 1px solid var(--input-border);
+            background-color: var(--input-bg);
+            color: var(--text-color);
+            box-sizing: border-box;
+        }
+
+        input[type="text"]:focus {
+            outline: 2px solid var(--input-focus);
+            border-color: transparent;
+        }
+
+        .container-list {
+            max-height: 300px;
+            overflow-y: auto;
+            padding-bottom: 5px;
+        }
+
+        /* Shared Item Styles */
+        .container-item {
+            display: flex;
+            align-items: center;
+            padding: 10px 15px;
+            cursor: pointer;
+            border-left: 3px solid transparent;
+        }
+
+        .container-item:hover {
+            background-color: var(--menu-hover);
+        }
+
+        .color-circle {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            margin-right: 12px;
+        }
+
+        .container-name {
+            flex-grow: 1;
+            font-size: 14px;
+        }
+
+        /* Sub-view Header */
+        .sub-header {
+            background-color: var(--header-bg);
+            padding: 12px 15px;
+            display: flex;
+            align-items: center;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .sub-back {
+            margin-right: 15px;
+            cursor: pointer;
+            font-size: 18px;
+            line-height: 1;
+        }
+
+        .sub-title {
+            font-weight: 600;
+            font-size: 14px;
+        }
+
+        /* Footer */
+        .footer {
+            border-top: 1px solid var(--border-color);
+            padding: 10px;
+        }
+
+        .button-full {
+            width: 100%;
+            padding: 8px;
+            background-color: var(--button-bg);
+            color: var(--text-color);
+            border: 1px solid var(--button-border);
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 13px;
+        }
+
+        .button-full:hover {
+            background-color: var(--button-hover);
+        }
+
+        .credit-link {
+            text-align: center;
+            font-size: 11px;
+            color: var(--subtext);
+            margin-top: 10px;
+            cursor: pointer;
+        }
+
+        .header {
+            background-color: #42414d;
+            color: white;
+            padding: 12px 15px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            border-bottom: 1px solid #5f6066;
+        }
+
+        .header-title {
+            font-size: 13px;
+            font-weight: 600;
+        }
+
+        .header-icon {
+            cursor: pointer;
+            opacity: 0.8;
+            display: flex;
+            align-items: center;
+        }
+
+        .header-icon:hover {
+            opacity: 1;
+        }
+
+        .arrow {
+            color: var(--subtext);
+            font-size: 16px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Persistent Header -->
+    <div class="header">
+        <div class="header-title">Chrome Multi-Account Containers</div>
+        <div class="header-icon" id="info-icon" title="Manage Extension">
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor">
+                <path d="M8 0a8 8 0 1 0 0 16A8 8 0 0 0 8 0zm0 14.5a6.5 6.5 0 1 1 0-13 6.5 6.5 0 0 1 0 13z" />
+                <path
+                    d="M7.25 4.5a.75.75 0 1 1 1.5 0 .75.75 0 0 1-1.5 0zm.75 3a.75.75 0 0 0-.75.75v3.5a.75.75 0 0 0 1.5 0v-3.5A.75.75 0 0 0 8 7.5z" />
+            </svg>
+        </div>
+    </div>
+
+    <!-- MAIN VIEW -->
+    <div id="main-view" class="view">
+        <!-- Menu Section -->
+        <div class="menu-list">
+            <div class="menu-item" id="menu-new-tab">
+                <span><span class="menu-icon">+</span> Open New Tab in...</span>
+                <span class="arrow">&rsaquo;</span>
+            </div>
+            <div class="menu-item" id="menu-reopen">
+                <span><span class="menu-icon">&#x21bb;</span> Reopen This Site in...</span>
+                <span class="arrow">&rsaquo;</span>
+            </div>
+            <div class="menu-item" id="menu-sort">
+                <span><span class="menu-icon">&#x21c4;</span> Sort Tabs by Container</span>
+            </div>
+            <div class="menu-item" id="menu-always">
+                <span><span class="menu-icon">&#x2610;</span> Always Open This Site in...</span>
+                <span class="arrow">&rsaquo;</span>
+            </div>
+        </div>
+
+        <!-- Containers Section (Shortcut) -->
+        <div class="section-title">Containers</div>
+        <div class="search-container">
+            <input type="text" id="search-input" placeholder="Search container name">
+        </div>
+
+        <div id="container-list-main" class="container-list">
+            <!-- Items injected here -->
+        </div>
+
+        <div class="footer">
+            <button id="manage-btn" class="button-full">Manage Containers</button>
+            <div class="credit-link" id="credit-link">
+                Built by <span style="color: #0060df; text-decoration: underline;">CredShields</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- SUB VIEW -->
+    <div id="sub-view" class="view hidden">
+        <div class="sub-header">
+            <div class="sub-back" id="sub-back-btn">&lsaquo;</div>
+            <div class="sub-title" id="sub-title-text">Select Container</div>
+        </div>
+        <div id="container-list-sub" class="container-list">
+            <!-- Items injected here -->
+        </div>
+    </div>
+
+    <script src="popup.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Manage Containers</title>
+    <style>
+        :root {
+            /* Light Mode */
+            --bg-color: #f9f9f9;
+            --header-bg: #ffffff;
+            --text-color: #333333;
+            --border-color: #e0e0e0;
+            --item-bg: #ffffff;
+            --item-hover: #f0f0f0;
+            --input-bg: #ffffff;
+            --input-border: #ccc;
+        }
+
+        @media (prefers-color-scheme: dark) {
+            :root {
+                /* Dark Mode */
+                --bg-color: #2b2a33;
+                --header-bg: #38383d;
+                --text-color: #f9f9fa;
+                --border-color: #5f6066;
+                --item-bg: #38383d;
+                --item-hover: #52525e;
+                --input-bg: #4a4a4f;
+                --input-border: #5f6066;
+            }
+        }
+
+        body {
+            width: 320px;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+        }
+
+        .header {
+            padding: 15px;
+            background-color: var(--header-bg);
+            border-bottom: 1px solid var(--border-color);
+            display: flex;
+            align-items: center;
+        }
+
+        .back-btn {
+            margin-right: 10px;
+            cursor: pointer;
+            font-size: 18px;
+            color: var(--text-color);
+        }
+
+        .header h1 {
+            margin: 0;
+            font-size: 16px;
+            font-weight: 600;
+            color: var(--text-color);
+        }
+
+        .list {
+            padding: 10px;
+        }
+
+        .item {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 10px;
+            background-color: var(--item-bg);
+            border-bottom: 1px solid var(--border-color);
+            color: var(--text-color);
+        }
+
+        .item:last-child {
+            border-bottom: none;
+        }
+
+        .item-info {
+            display: flex;
+            align-items: center;
+        }
+
+        .color-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            margin-right: 10px;
+        }
+
+        .delete-btn {
+            color: #d93025;
+            cursor: pointer;
+            font-size: 18px;
+        }
+
+        .add-form {
+            padding: 15px;
+            background-color: var(--header-bg);
+            border-top: 1px solid var(--border-color);
+        }
+
+        input {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 10px;
+            box-sizing: border-box;
+            border: 1px solid var(--input-border);
+            border-radius: 4px;
+            background-color: var(--input-bg);
+            color: var(--text-color);
+        }
+
+        .color-picker {
+            display: flex;
+            gap: 5px;
+            margin-bottom: 10px;
+        }
+
+        .color-option {
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            cursor: pointer;
+            border: 2px solid transparent;
+        }
+
+        .color-option.selected {
+            border-color: var(--text-color);
+        }
+
+        .add-btn {
+            background-color: #0060df;
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 4px;
+            font-size: 14px;
+            cursor: pointer;
+            width: 100%;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="header">
+        <span class="back-btn">&larr;</span>
+        <h1>Manage Containers</h1>
+    </div>
+    <div id="list" class="list"></div>
+
+    <div class="add-form">
+        <input type="text" id="new-name" placeholder="New Container Name">
+        <div class="color-picker" id="color-picker">
+            <div class="color-option" style="background-color: #37adff" data-color="blue"></div>
+            <div class="color-option" style="background-color: #ff9400" data-color="orange"></div>
+            <div class="color-option" style="background-color: #5b5b5b" data-color="green"></div>
+            <div class="color-option" style="background-color: #ff4bda" data-color="pink"></div>
+            <div class="color-option" style="background-color: #af51f5" data-color="purple"></div>
+            <div class="color-option" style="background-color: #ff0039" data-color="red"></div>
+        </div>
+        <button id="add-btn" class="add-btn">Add Container</button>
+    </div>
+    <script src="manage.js"></script>
+</body>
+
+</html>
