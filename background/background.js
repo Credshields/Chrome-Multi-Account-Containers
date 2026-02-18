@@ -15,7 +15,6 @@ chrome.runtime.onInstalled.addListener(async () => {
     if (!data.containers) {
         await chrome.storage.local.set({
             containers: DEFAULT_CONTAINERS,
-            currentContainer: "default",
             tabContainerMap: {}
         });
     }
@@ -42,7 +41,7 @@ async function createContainerTab(containerId, url = "chrome://newtab") {
     // 3. Group it visually
     await groupTab(newTab.id, containerId);
 
-    // 4. Now activate it, triggering the cookie swap logic in onActivated
+    // 4. Now activate the tab
     await chrome.tabs.update(newTab.id, { active: true });
 }
 
